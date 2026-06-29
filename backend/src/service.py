@@ -11,7 +11,7 @@ class ObligationService:
         self.repo = ObligationRepository(db)
 
     def change_status(self, obligation_id: str, payload: ObligationUpdateStatus):
-        obligation, current_version = self.repo.get(obligation.id)
+        obligation, current_version = self.repo.get(obligation_id)
         if not obligation:
             raise HTTPException(status_code=404, detail="Obligation not found")
 

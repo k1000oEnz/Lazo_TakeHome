@@ -32,7 +32,7 @@ class ObligationRepository:
             "version": current_version + 1
         })
 
-        if rows_affected == 0
+        if rows_affected == 0:
             raise ValueError("Concurrency conflict")
 
         self.db.commit()
