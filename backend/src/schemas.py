@@ -29,15 +29,18 @@ class ObligationBase(BaseModel):
     company_tax_id: str = Field(..., description="Sensitive Data")
 
 
+# POST
 class ObligationCreate(ObligationBase):
     pass
 
 
+# PATCH
 class ObligationUpdateStatus(BaseModel):
     status: Status
     has_document: bool = False
 
 
+# GET
 class ObligationResponse(ObligationBase):
     id: str
     status: Status
