@@ -12,3 +12,7 @@ class MissingDocumentError(DomainError):
 
 class ConcurrencyConflictError(DomainError):
     pass
+
+
+class NotFoundError(DomainError):
+    pass

@@ -98,6 +98,7 @@ class Obligation:
     description: str | None = None
     status: Status = Status.PENDING
     documents: list[Document] = field(default_factory=list)
+    version: int = 1
 
     @property
     def has_document(self) -> bool:
@@ -115,6 +116,10 @@ class Obligation:
         if len(self.company_tax_id) <= 4:
             return "****"
         return f"****-{self.company_tax_id[-4:]}"
+
+    @property
+    def available_transitions(self) -> list[Status]:
+        return sorted(ALLOWED_TRANSITIONS[self.status], key=lambda s: s.value)
 
     def transition_to(
         self,

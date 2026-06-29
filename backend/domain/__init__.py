@@ -11,6 +11,7 @@ from .exceptions import (
     DomainError,
     InvalidTransitionError,
     MissingDocumentError,
+    NotFoundError,
 )
 
 __all__ = [
@@ -21,6 +22,7 @@ __all__ = [
     "DomainError",
     "InvalidTransitionError",
     "MissingDocumentError",
+    "NotFoundError",
     "Obligation",
     "ObligationType",
     "Status",

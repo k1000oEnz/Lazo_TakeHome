@@ -73,6 +73,11 @@ class ObligationRepository:
             )
             .update(
                 {
+                    ObligationModel.title: obligation.title,
+                    ObligationModel.description: obligation.description,
+                    ObligationModel.due_date: obligation.due_date,
+                    ObligationModel.owner: obligation.owner,
+                    ObligationModel.requires_document: obligation.requires_document,
                     ObligationModel.status: obligation.status.value,
                     ObligationModel.version: current_version + 1,
                     ObligationModel.updated_at: datetime.now(timezone.utc),
@@ -83,6 +88,7 @@ class ObligationRepository:
             raise ConcurrencyConflictError(
                 f"Version conflict on obligation {obligation.id}"
             )
+        obligation.version = current_version + 1
 
     def _to_entity(self, model: ObligationModel) -> Obligation:
         documents = [
@@ -107,6 +113,7 @@ class ObligationRepository:
             company_tax_id=model.company_tax_id,
             status=Status(model.status),
             documents=documents,
+            version=model.version,
         )
 
 
@@ -161,6 +168,23 @@ class DocumentRepository:
         )
         self.db.add(model)
         self.db.flush()
+
+    def get(self, document_id: str) -> Document | None:
+        model = (
+            self.db.query(DocumentModel)
+            .filter(DocumentModel.id == document_id)
+            .first()
+        )
+        if not model:
+            return None
+        return Document(
+            id=model.id,
+            obligation_id=model.obligation_id,
+            filename=model.filename,
+            size=model.size,
+            content=model.content,
+            uploaded_at=model.uploaded_at,
+        )
 
     def list_for_obligation(self, obligation_id: str) -> list[Document]:
         models = (
