@@ -1,24 +1,26 @@
 import uuid
+from datetime import date
 
-from sqlalchemy import Boolean, Column, Date, Integer, String
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-Base = declarative_base()
+
+class Base(DeclarativeBase):
+    pass
 
 
 class ObligationModel(Base):
     __tablename__ = "obligations"
 
-    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
-    title = Column(String, nullable=False)
-    description = Column(String, nullable=True)
-    type = Column(String, nullable=False)
-    due_date = Column(Date, nullable=False)
-    owner = Column(String, nullable=False)
-    requires_document = Column(Boolean, nullable=False, default=False)
-    has_document = Column(Boolean, nullable=False, default=False)
-    status = Column(String, nullable=False, default="pending")
+    id: Mapped[str] = mapped_column(primary_key=True, default=lambda: str(uuid.uuid4()))
+    title: Mapped[str]
+    description: Mapped[str | None]
+    type: Mapped[str]
+    due_date: Mapped[date]
+    owner: Mapped[str]
+    requires_document: Mapped[bool] = mapped_column(default=False)
+    has_document: Mapped[bool] = mapped_column(default=False)
+    status: Mapped[str] = mapped_column(default="pending")
 
-    company_tax_id = Column(String, nullable=False)
+    company_tax_id: Mapped[str]
 
-    version = Column(Integer, nullable=False, default=1)
+    version: Mapped[int] = mapped_column(default=1)
