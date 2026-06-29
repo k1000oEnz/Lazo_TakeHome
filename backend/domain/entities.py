@@ -64,6 +64,7 @@ class Document:
     obligation_id: str
     filename: str
     size: int
+    content: bytes
     uploaded_at: datetime
 
     @staticmethod
@@ -72,6 +73,7 @@ class Document:
         filename: str,
         size: int,
         *,
+        content: bytes = b"",
         uploaded_at: datetime | None = None,
     ) -> Document:
         return Document(
@@ -79,6 +81,7 @@ class Document:
             obligation_id=obligation_id,
             filename=filename,
             size=size,
+            content=content,
             uploaded_at=uploaded_at or datetime.now(timezone.utc),
         )
 
