@@ -14,6 +14,7 @@
   "filter.status": "Status",
   "obligation.title": "Title",
   "obligation.type": "Type",
+  "obligation.description": "Description",
   "obligation.due_date": "Due date",
   "obligation.status": "Status",
   "obligation.owner": "Owner",
