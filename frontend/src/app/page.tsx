@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ApiError, api } from "@/lib/api-client";
-import { DEFAULT_LOCALE, getDictionary, isLocale } from "@/lib/i18n";
+import { isLocale } from "@/lib/i18n";
+import { getRequestDictionary } from "@/lib/i18n-server";
 import type { Obligation, Status } from "@/lib/types";
 import { KpiCard } from "@/components/KpiCard";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -36,7 +37,7 @@ export default async function HomePage({
   searchParams: Promise<{ status?: string; overdue?: string }>;
 }) {
   const params = await searchParams;
-  const t = getDictionary(DEFAULT_LOCALE);
+  const t = await getRequestDictionary();
   const filter = parseFilter(params);
 
   let allObligations: Obligation[] = [];

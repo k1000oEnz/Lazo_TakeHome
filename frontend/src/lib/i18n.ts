@@ -14,6 +14,6 @@ export function getDictionary(locale: Locale): Dictionary {
   return dictionaries[locale] ?? dictionaries[DEFAULT_LOCALE];
 }
 
-export function isLocale(value: string): value is Locale {
-  return (LOCALES as ReadonlyArray<string>).includes(value);
+export function isLocale(value: string | undefined): value is Locale {
+  return (LOCALES as ReadonlyArray<string>).includes(value ?? "");
 }

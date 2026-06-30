@@ -1,8 +1,8 @@
 import { uploadDocumentAction } from "@/app/obligations/[id]/actions";
-import { DEFAULT_LOCALE, getDictionary } from "@/lib/i18n";
+import { getRequestDictionary } from "@/lib/i18n-server";
 
-export function UploadDocument({ obligationId }: { obligationId: string }) {
-  const t = getDictionary(DEFAULT_LOCALE);
+export async function UploadDocument({ obligationId }: { obligationId: string }) {
+  const t = await getRequestDictionary();
   return (
     <form
       action={uploadDocumentAction}

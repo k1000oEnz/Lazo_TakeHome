@@ -1,6 +1,6 @@
 import { createObligationAction } from "@/app/obligations/new/actions";
 import { updateObligationAction } from "@/app/obligations/[id]/edit/actions";
-import { DEFAULT_LOCALE, getDictionary } from "@/lib/i18n";
+import { getRequestDictionary } from "@/lib/i18n-server";
 import type { ObligationType } from "@/lib/types";
 
 const TYPES: ObligationType[] = [
@@ -20,7 +20,7 @@ interface InitialValues {
   company_tax_id: string;
 }
 
-export function ObligationForm({
+export async function ObligationForm({
   mode,
   obligationId,
   initial,
@@ -29,7 +29,7 @@ export function ObligationForm({
   obligationId?: string;
   initial?: InitialValues;
 }) {
-  const t = getDictionary(DEFAULT_LOCALE);
+  const t = await getRequestDictionary();
   const action =
     mode === "create" ? createObligationAction : updateObligationAction;
   const cancelHref =

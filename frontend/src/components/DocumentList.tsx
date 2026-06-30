@@ -1,8 +1,8 @@
-import { DEFAULT_LOCALE, getDictionary } from "@/lib/i18n";
+import { getRequestDictionary } from "@/lib/i18n-server";
 import type { DocumentSummary } from "@/lib/types";
 
-export function DocumentList({ documents }: { documents: DocumentSummary[] }) {
-  const t = getDictionary(DEFAULT_LOCALE);
+export async function DocumentList({ documents }: { documents: DocumentSummary[] }) {
+  const t = await getRequestDictionary();
   if (documents.length === 0) {
     return (
       <p className="text-sm text-zinc-500 dark:text-zinc-400">{t["documents.empty"]}</p>

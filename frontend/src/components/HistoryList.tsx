@@ -1,8 +1,8 @@
-import { DEFAULT_LOCALE, getDictionary } from "@/lib/i18n";
+import { getRequestDictionary } from "@/lib/i18n-server";
 import type { HistoryEntry } from "@/lib/types";
 
-export function HistoryList({ history }: { history: HistoryEntry[] }) {
-  const t = getDictionary(DEFAULT_LOCALE);
+export async function HistoryList({ history }: { history: HistoryEntry[] }) {
+  const t = await getRequestDictionary();
   if (history.length === 0) {
     return (
       <p className="text-sm text-zinc-500 dark:text-zinc-400">{t["history.empty"]}</p>

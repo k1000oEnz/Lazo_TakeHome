@@ -1,5 +1,5 @@
 import { transitionAction } from "@/app/obligations/[id]/actions";
-import { DEFAULT_LOCALE, getDictionary } from "@/lib/i18n";
+import { getRequestDictionary } from "@/lib/i18n-server";
 import type { ObligationDetail, Status } from "@/lib/types";
 
 function canTransitionTo(
@@ -13,8 +13,8 @@ function canTransitionTo(
   return true;
 }
 
-export function TransitionButtons({ obligation }: { obligation: ObligationDetail }) {
-  const t = getDictionary(DEFAULT_LOCALE);
+export async function TransitionButtons({ obligation }: { obligation: ObligationDetail }) {
+  const t = await getRequestDictionary();
 
   if (obligation.available_transitions.length === 0) {
     return <p className="text-sm text-zinc-500 dark:text-zinc-400">—</p>;

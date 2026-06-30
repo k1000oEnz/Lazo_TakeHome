@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { DEFAULT_LOCALE, getDictionary } from "@/lib/i18n";
+import { getRequestDictionary } from "@/lib/i18n-server";
 
-export default function NotFound() {
-  const t = getDictionary(DEFAULT_LOCALE);
+export default async function NotFound() {
+  const t = await getRequestDictionary();
   return (
     <main className="flex flex-1 flex-col items-center justify-center bg-white px-6 py-10 dark:bg-zinc-950">
       <p className="text-zinc-600 dark:text-zinc-400">{t["error.not_found"]}</p>

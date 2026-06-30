@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ApiError, api } from "@/lib/api-client";
-import { DEFAULT_LOCALE, getDictionary } from "@/lib/i18n";
+import { getRequestDictionary } from "@/lib/i18n-server";
 import { ObligationForm } from "@/components/ObligationForm";
 
 export default async function EditObligationPage({
@@ -10,7 +10,7 @@ export default async function EditObligationPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const t = getDictionary(DEFAULT_LOCALE);
+  const t = await getRequestDictionary();
 
   let obligation;
   try {

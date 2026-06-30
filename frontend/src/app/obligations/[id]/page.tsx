@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ApiError, api } from "@/lib/api-client";
-import { DEFAULT_LOCALE, getDictionary } from "@/lib/i18n";
+import { getRequestDictionary } from "@/lib/i18n-server";
 import type { Dictionary } from "@/lib/i18n";
 import type { ObligationDetail } from "@/lib/types";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -19,7 +19,7 @@ export default async function DetailPage({
 }) {
   const { id } = await params;
   const { error: errorParam } = await searchParams;
-  const t = getDictionary(DEFAULT_LOCALE);
+  const t = await getRequestDictionary();
 
   let obligation: ObligationDetail | null = null;
   try {
