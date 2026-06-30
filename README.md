@@ -27,7 +27,7 @@
   │       ├── app/            layouts, pages, error/loading/not-found
   │       ├── components/     primitives (KpiCard, StatusBadge, ThemeToggle, LocaleSwitch, etc.)
   │       └── lib/            api-client, types, i18n, dictionaries/{es,en}.json
-  ├── DECISIONS.md            architecture, decisions and rationale (read before the defense)
+  ├── DECISIONS.md            architecture, decisions and rationale
   ├── pytest.ini              testpaths and pythonpath for pytest
   ├── requirements-dev.txt    pytest, httpx
   └── venv/                   Python venv (not committed)
@@ -37,19 +37,19 @@
   ### Backend
   
   ```powershell
-  # Una vez: crear venv e instalar deps
+  # One time: create venv and install deps
   python -m venv venv
   .\venv\Scripts\python.exe -m pip install -r backend\requirements.txt -r requirements-dev.txt
   
-  # Crear la DB y sembrar datos
+  # Create the DB y place data
   .\venv\Scripts\python.exe backend\init_db.py
   .\venv\Scripts\python.exe backend\seed.py
   
-  # Levantar la API
+  # Run the API
   $env:PYTHONPATH = "backend"; .\venv\Scripts\python.exe -m uvicorn src.api.main:app
   ```
   
-  → Swagger en `http://localhost:8000/docs`
+  → Swagger in `http://localhost:8000/docs`
   
   ### Frontend
   
@@ -74,10 +74,10 @@
   ## Features
   
   - **Dashboard** with KPIs (total, overdue, upcoming, submitted), filtering by status or overdue via URL params, and a table highlighting overdue items.
-  - **Detalle** with all fields, masked tax ID, history, transitions (the submitted button is disabled if a document is missing), document upload, and loading/error/404 states.
-  - **Crear / editar** with server-side validation, Server Actions, and revalidation.
+  - **Detail** with all fields, masked tax ID, history, transitions (the submitted button is disabled if a document is missing), document upload, and loading/error/404 states.
+  - **Create / edit** with server-side validation, Server Actions, and revalidation.
   - **i18n** es/en with a header switch (persisted locale cookie, useTransition for smooth refreshing).
-  - **Modo oscuro** with a header switch (localStorage, no incorrect theme flashes).
+  - **Dark mode** with a header switch (localStorage, no incorrect theme flashes).
 
   ## Endpoints
   
