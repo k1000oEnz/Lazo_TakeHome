@@ -4,6 +4,7 @@
   "nav.dashboard": "Dashboard",
   "nav.obligations": "Obligations",
   "nav.new_obligation": "New obligation",
+  "nav.back": "Back",
   "dashboard.total": "Total",
   "dashboard.overdue": "Overdue",
   "dashboard.due_soon": "Due soon",
@@ -22,6 +23,10 @@
   "status.in_progress": "In progress",
   "status.submitted": "Submitted",
   "status.done": "Done",
+  "type.annual_report": "Annual report",
+  "type.franchise_tax": "Franchise tax",
+  "type.boi_report": "BOI report",
+  "type.registered_agent_renewal": "Registered agent renewal",
   "transition.button": "Transition to",
   "transition.blocked_doc": "Upload a document before transitioning to Submitted",
   "history.title": "History",
@@ -39,5 +44,8 @@
   "error.version_conflict": "Someone else modified this obligation. Please reload the page.",
   "error.generic": "Something went wrong",
   "empty.no_obligations": "No obligations",
-  "loading": "Loading"
+  "loading": "Loading",
+  "theme.toggle": "Toggle theme",
+  "theme.light": "Light",
+  "theme.dark": "Dark"
 }

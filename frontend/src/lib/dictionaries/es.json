@@ -4,6 +4,7 @@
   "nav.dashboard": "Dashboard",
   "nav.obligations": "Obligaciones",
   "nav.new_obligation": "Nueva obligación",
+  "nav.back": "Volver",
   "dashboard.total": "Total",
   "dashboard.overdue": "Vencidas",
   "dashboard.due_soon": "Vencen pronto",
@@ -22,6 +23,10 @@
   "status.in_progress": "En progreso",
   "status.submitted": "Presentado",
   "status.done": "Hecho",
+  "type.annual_report": "Reporte anual",
+  "type.franchise_tax": "Impuesto de franquicia",
+  "type.boi_report": "Reporte BOI",
+  "type.registered_agent_renewal": "Renovación de agente registrado",
   "transition.button": "Transicionar a",
   "transition.blocked_doc": "Subí un documento para poder transicionar a Presentado",
   "history.title": "Historial",
@@ -39,5 +44,8 @@
   "error.version_conflict": "Otra persona modificó esta obligación. Recargá la página.",
   "error.generic": "Algo salió mal",
   "empty.no_obligations": "No hay obligaciones",
-  "loading": "Cargando"
+  "loading": "Cargando",
+  "theme.toggle": "Cambiar tema",
+  "theme.light": "Claro",
+  "theme.dark": "Oscuro"
 }
