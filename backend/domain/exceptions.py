@@ -8,3 +8,11 @@ class InvalidTransitionError(DomainError):
 
 class MissingDocumentError(DomainError):
     pass
+
+
+class ConcurrencyConflictError(DomainError):
+    pass
+
+
+class NotFoundError(DomainError):
+    pass
