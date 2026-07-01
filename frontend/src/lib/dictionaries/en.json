@@ -1,6 +1,5 @@
 {
   "app.title": "Compliance Obligations Tracker",
-  "app.subtitle": "What to file, when it is due, what state it is in",
   "nav.dashboard": "Dashboard",
   "nav.obligations": "Obligations",
   "nav.new_obligation": "New obligation",

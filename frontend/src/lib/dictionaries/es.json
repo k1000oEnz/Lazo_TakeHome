@@ -1,6 +1,5 @@
 {
-  "app.title": "Tracker de Obligaciones de Compliance",
-  "app.subtitle": "Qué presentar, cuándo vence, en qué estado",
+  "app.title": "Seguimiento de cumplimiento de obligaciones",
   "nav.dashboard": "Dashboard",
   "nav.obligations": "Obligaciones",
   "nav.new_obligation": "Nueva obligación",
