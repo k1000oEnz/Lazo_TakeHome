@@ -18,16 +18,17 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Compliance Obligations Tracker",
-    description=(
-        "Track compliance obligations: state, due dates, documents, history."
-    ),
+    description=("Track compliance obligations: state, due dates, documents, history."),
     version="0.1.0",
     lifespan=lifespan,
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://lazo-take-home.vercel.app/",  # la URL que te dé Vercel
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
