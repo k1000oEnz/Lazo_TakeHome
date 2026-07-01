@@ -31,7 +31,13 @@
   ├── pytest.ini              testpaths and pythonpath for pytest
   ├── requirements-dev.txt    pytest, httpx
   └── venv/                   Python venv (not committed)
-
+  ```
+  
+  ## Future Improvements (If I had more time)
+  
+  * **Authentication & Authorization**: Since this application handles highly sensitive compliance data, implementing a robust auth system with Role-Based Access Control would be the immediate next step.
+  * **Production-Grade Database & Migrations**: Migrate from the current local SQLite setup to a robust database like PostgreSQL, which is ideal for serverless deployments.
+  * **E2E Testing**: While the unit and integration layers are covered, adding End-to-End tests using Playwright or Cypress would be great to ensure the critical paths work seamlessly from the UI down to the database.
   ## How to run
   
   ### Backend

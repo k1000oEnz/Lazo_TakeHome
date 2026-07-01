@@ -9,7 +9,12 @@ import { StatusBadge } from "@/components/StatusBadge";
 type Filter = { status?: Status; overdue?: boolean };
 
 function isStatus(value: string | undefined): value is Status {
-  return value === "pending" || value === "in_progress" || value === "submitted" || value === "done";
+  return (
+    value === "pending" ||
+    value === "in_progress" ||
+    value === "submitted" ||
+    value === "done"
+  );
 }
 
 function parseFilter(params: { status?: string; overdue?: string }): Filter {
@@ -21,7 +26,8 @@ function parseFilter(params: { status?: string; overdue?: string }): Filter {
 
 function applyFilter(obligations: Obligation[], filter: Filter): Obligation[] {
   if (filter.overdue) return obligations.filter((o) => o.is_overdue);
-  if (filter.status) return obligations.filter((o) => o.status === filter.status);
+  if (filter.status)
+    return obligations.filter((o) => o.status === filter.status);
   return obligations;
 }
 
@@ -71,9 +77,7 @@ export default async function HomePage({
 
   const filteredObligations = applyFilter(allObligations, filter);
 
-  const activeKey = filter.overdue
-    ? "overdue"
-    : (filter.status ?? "all");
+  const activeKey = filter.overdue ? "overdue" : (filter.status ?? "all");
 
   return (
     <main className="flex flex-1 flex-col items-center bg-white px-6 py-10 dark:bg-zinc-950">
@@ -81,9 +85,6 @@ export default async function HomePage({
         <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
           {t["dashboard.total"]}
         </h2>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          {t["app.subtitle"]}
-        </p>
       </div>
 
       <section className="w-full max-w-6xl mt-6">
@@ -95,13 +96,21 @@ export default async function HomePage({
             variant={kpis.overdue > 0 ? "warning" : "default"}
           />
           <KpiCard label={t["dashboard.due_soon"]} value={kpis.dueSoon} />
-          <KpiCard label={t["status.submitted"]} value={kpis.submitted} variant="success" />
+          <KpiCard
+            label={t["status.submitted"]}
+            value={kpis.submitted}
+            variant="success"
+          />
         </div>
       </section>
 
       <section className="w-full max-w-6xl mt-8 flex flex-col gap-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap gap-2" role="tablist" aria-label={t["filter.status"]}>
+          <div
+            className="flex flex-wrap gap-2"
+            role="tablist"
+            aria-label={t["filter.status"]}
+          >
             <FilterChip
               href={filterHref({})}
               active={activeKey === "all"}
@@ -157,22 +166,40 @@ export default async function HomePage({
             <table className="w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b-2 border-primary">
-                  <th scope="col" className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400">
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400"
+                  >
                     {t["obligation.title"]}
                   </th>
-                  <th scope="col" className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400">
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400"
+                  >
                     {t["obligation.type"]}
                   </th>
-                  <th scope="col" className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400">
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400"
+                  >
                     {t["obligation.due_date"]}
                   </th>
-                  <th scope="col" className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400">
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400"
+                  >
                     {t["obligation.status"]}
                   </th>
-                  <th scope="col" className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400">
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400"
+                  >
                     {t["obligation.owner"]}
                   </th>
-                  <th scope="col" className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400">
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-400"
+                  >
                     {t["obligation.tax_id"]}
                   </th>
                 </tr>
@@ -205,7 +232,9 @@ export default async function HomePage({
                         label={t[`status.${o.status}`]}
                       />
                     </td>
-                    <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">{o.owner}</td>
+                    <td className="px-4 py-3 text-zinc-600 dark:text-zinc-400">
+                      {o.owner}
+                    </td>
                     <td className="px-4 py-3 font-mono text-zinc-600 dark:text-zinc-400">
                       {o.tax_id_masked}
                     </td>
@@ -220,7 +249,15 @@ export default async function HomePage({
   );
 }
 
-function FilterChip({ href, active, label }: { href: string; active: boolean; label: string }) {
+function FilterChip({
+  href,
+  active,
+  label,
+}: {
+  href: string;
+  active: boolean;
+  label: string;
+}) {
   return (
     <Link
       href={href}
