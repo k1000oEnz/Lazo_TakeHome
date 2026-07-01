@@ -5,6 +5,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from ..database import init_db
 from .errors import register_exception_handlers
 from .logging_config import configure_logging
 from .routers import documents_router, router, transitions_router
@@ -13,6 +14,7 @@ from .routers import documents_router, router, transitions_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     configure_logging()
+    init_db()
     yield
 
 
@@ -27,7 +29,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://lazo-take-home.vercel.app/",  # la URL que te dé Vercel
+        "https://lazo-take-home.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
